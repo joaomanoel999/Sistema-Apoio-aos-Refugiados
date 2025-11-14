@@ -1,0 +1,226 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Refugiado e Voluntário </title>
+    
+    <link rel="stylesheet" href="{% static 'usuarios/css/cadastro.css' %}">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'usuarios/js/cadastro.js' %}" defer></script>
+    
+</head>
+<body>
+   
+
+
+    <div class="container">
+        <h1>Seja bem-vindo(a). Escolha como deseja se cadastrar.</h1>
+
+        <div class="tabs">
+            <button class="tab-button active" data-target="refugiado-form">
+                <i class="icon">👤</i> Sou Refugiado(a)
+            </button>
+            <button class="tab-button" data-target="voluntario-form">
+                <i class="icon">💚</i> Quero Ajudar
+            </button>
+        </div>
+
+        <div class="form-content">
+
+            <form id="refugiado-form" class="registration-form active" method="post">
+                {% csrf_token %}
+                <h2>Formulário de Refugiado</h2>
+
+                <div class="form-group">
+                    <label for="ref-nome">Nome Completo *</label>
+                    <input type="text" id="ref-nome" name="nome_completo" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="ref-nascimento">Data de Nascimento *</label>
+                        <input type="text" id="ref-nascimento" name="data_nascimento" class="data-nascimento" placeholder="dd/mm/aaaa" required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="ref-telefone">Telefone *</label>
+                        <input type="text" id="ref-telefone" name="telefone" class="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="ref-pais">País de Origem *</label>
+                        <select id="ref-pais" name="pais_origem" required>
+                            <option value="">Selecione o país</option>
+                            <option value="siria">Síria</option>
+                            <option value="afeganistao">Afeganistão</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="iraque">Iraque</option>
+                            <option value="sudao">Sudão</option>
+                            </select>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="ref-idioma">Idioma *</label>
+                        <select id="ref-idioma" name="idioma" required>
+                            <option value="">Selecione o idioma</option>                                      
+                            <option value="portugues">Português</option>
+                            <option value="espanhol">Espanhol</option>
+                            <option value="ingles">Inglês</option>
+                            <option value="frances">Francês</option>
+                            <option value="russo">Russo</option>
+                            <option value="outro">Árabe</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ref-status">Status de Refúgio *</label>
+                    <select id="ref-status" name="status_refugio" required>
+                        <option value="">Selecione o status</option>
+                        <option value="solicitante">Solicitante</option>
+                        <option value="reconhecido">Reconhecido</option>
+                        <option value="negado">Negado</option>
+                        <option value="em_regularizacao">Em Regularização</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <h3>Endereço</h3>
+                
+                <div class="form-group">
+                    <label for="ref-cep">CEP *</label>
+                    <input type="text" id="ref-cep" name="cep" class="cep-input" placeholder="00000-000" maxlength="9" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ref-logradouro">Logradouro *</label>
+                    <input type="text" id="ref-logradouro" name="logradouro" placeholder="Rua, Avenida, etc." required>
+                </div>
+                <div class="form-group half-width">
+                    <label for="ref-numero-endereco">Número *</label>
+                    <input type="text" 
+                        id="ref-numero-endereco" 
+                        name="numero_endereco" 
+                        placeholder="Número" 
+                        required> 
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="ref-bairro">Bairro *</label>
+                        <input type="text" id="ref-bairro" name="bairro" placeholder="Bairro" readonly required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="ref-cidade">Cidade *</label>
+                        <input type="text" id="ref-cidade" name="cidade" placeholder="Cidade" readonly required>
+                    </div>
+                    <div class="form-group third-width" style="display: none;">
+                        <label for="ref-estado">Estado (UF) *</label>
+                        <input type="text" id="ref-estado" name="estado" placeholder="UF" readonly maxlength="2" required>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <label for="ref-senha">Senha *</label>
+                    <input type="password" id="ref-senha" name="senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                </div>
+                
+                <button type="submit" class="btn-submit blue-bg">Cadastrar</button>
+                <p class="login-link">Já tem uma conta? <a href="{% url 'usuarios:login' %}">Faça seu login aqui</a></p>
+            </form>
+            
+            <form id="voluntario-form" class="registration-form hidden" method="POST" action="">
+                {% csrf_token %}
+
+                <h2>Formulário de Voluntário</h2>
+                
+                <div class="form-group">
+                    <label for="vol-nome">Nome Completo *</label>
+                    <input type="text" id="vol-nome" name="nome_completo_voluntario" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="vol-email">Email *</label>
+                        <input type="email" id="vol-email" name="email_voluntario" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="vol-telefone">Telefone *</label>
+                        <input type="text" id="vol-telefone" name="telefone_voluntario" class="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>Idiomas Falados *</label>
+                    <div class="checkbox-row">
+                        <div class="checkbox-col">
+                            <label><input type="checkbox" name="idiomas" value="portugues"> Português</label>
+                            <label><input type="checkbox" name="idiomas" value="espanhol"> Espanhol</label>
+                            <label><input type="checkbox" name="idiomas" value="arabe"> Árabe</label>
+                        </div>
+                        <div class="checkbox-col">
+                            <label><input type="checkbox" name="idiomas" value="espanhol"> Espanhol</label>
+                            <label><input type="checkbox" name="idiomas" value="russo"> Russo</label>
+                            <label><input type="checkbox" name="idiomas" value="ingles"> Inglês</label>
+                        </div>
+                        <div class="checkbox-col">
+                            <label><input type="checkbox" name="idiomas" value="mandarim"> Mandarim</label>
+                            <label><input type="checkbox" name="idiomas" value="ucraniano"> Ucraniano</label>
+                            <label><input type="checkbox" name="idiomas" value="frances"> Francês</label>
+                        </div>
+                        <div class="checkbox-col">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>Habilidades Oferecidas *</label>
+                    <div class="checkbox-row">
+                        <div class="checkbox-col half-col">
+                            <label><input type="checkbox" name="habilidades" value="traducao"> Tradução</label>
+                            <label><input type="checkbox" name="habilidades" value="abrigo_temporario"> Abrigo Temporário</label>
+                            <label><input type="checkbox" name="habilidades" value="assistencia_medica"> Assistência Médica</label>
+                            <label><input type="checkbox" name="habilidades" value="doacao_roupas"> Doação de Roupas/Alimentos</label>
+                            <label><input type="checkbox" name="habilidades" value="orientacao_profissional"> Orientação Profissional</label>
+                        </div>
+                        <div class="checkbox-col half-col">
+                            <label><input type="checkbox" name="habilidades" value="transporte"> Transporte</label>
+                            <label><input type="checkbox" name="habilidades" value="orientacao_legal"> Orientação Legal</label>
+                            <label><input type="checkbox" name="habilidades" value="ensino_idiomas"> Ensino de Idiomas</label>
+                            <label><input type="checkbox" name="habilidades" value="apoio_psicologico"> Apoio Psicológico</label>
+                            <label><input type="checkbox" name="habilidades" value="documentacao"> Documentação</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="vol-disponibilidade">Disponibilidade *</label>
+                    <textarea id="vol-disponibilidade" name="disponibilidade" rows="3" placeholder="Ex: Segundas e quartas das 14h às 18h" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="vol-localizacao">Localização (CEP ou Cidade) *</label>
+                    <input type="text" id="vol-localizacao" name="localizacao" placeholder="00000-000 ou Nome da Cidade" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="vol-senha">Senha *</label>
+                    <input type="password" id="vol-senha" name="senha_voluntario" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                </div>
+
+                <button type="submit" class="btn-submit green-bg">Cadastrar</button>
+                <p class="login-link">Já tem uma conta? <a href="{% url 'usuarios:login' %}">Faça seu login aqui</a></p>
+            </form>
+            
+
+        </div>
+    </div>
+
+    
+</body>
+</html>

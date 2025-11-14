@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Serviços</title>
+    <link rel="stylesheet" href="{% static 'servicos/css/catalogo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="catalogo-container">
+        <h1 class="catalogo-titulo">Catálogo de Serviços</h1>
+        
+        <p class="catalogo-subtitulo">Escolha o tipo de ajuda que você precisa e faça sua solicitação.</p>
+
+        <div class="servicos-grid">
+            
+            <div class="card">
+                <i class="fas fa-book-open icon-verde"></i>
+                <h3 class="card-titulo">Aulas de Português</h3>
+                <p class="card-descricao">Aprenda o idioma para se comunicar melhor no dia a dia e no trabalho.</p>
+                <button class="btn-solicitar">Solicitar Ajuda</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-file-alt icon-roxo"></i>
+                <h3 class="card-titulo">Ajuda com Documentação</h3>
+                <p class="card-descricao">Receba orientação para tirar RNE, CPF, carteira de trabalho e outros documentos.</p>
+                <button class="btn-solicitar">Solicitar Ajuda</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-balance-scale icon-amarelo"></i>
+                <h3 class="card-titulo">Orientação sobre Direitos</h3>
+                <p class="card-descricao">Conheça seus direitos no Brasil, como acesso à saúde, educação e trabalho.</p>
+                <button class="btn-solicitar">Solicitar Ajuda</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-briefcase icon-azul"></i>
+                <h3 class="card-titulo">Treinamento Profissional</h3>
+                <p class="card-descricao">Participe de cursos e treinamentos para se qualificar para o mercado de trabalho.</p>
+                <button class="btn-solicitar">Solicitar Ajuda</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-ellipsis-h icon-cinza"></i>
+                <h3 class="card-titulo">Outro Tipo de Ajuda</h3>
+                <p class="card-descricao">Se sua necessidade não se encaixa nas outras, descreva o que você precisa aqui.</p>
+                <button class="btn-solicitar">Solicitar Ajuda</button>
+            </div>
+
+            </div>
+    </div>
+</body>
+</html>

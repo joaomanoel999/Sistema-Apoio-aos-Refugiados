@@ -1,0 +1,245 @@
+/* ... (Mantenha o CSS anterior para container, tabs, forms, etc.) ... */
+/* Apenas adicionando e ajustando as novas regras para checkboxes */
+
+/* Reset básico para melhor visualização */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo das Abas (Tabs) */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none;
+    background: #f9f9f9;
+    color: #666;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    font-size: 1em;
+}
+
+.tab-button .icon {
+    margin-right: 5px;
+}
+
+/* Estilo para a aba ativa */
+.tab-button.active {
+    background: #fff;
+    color: #333;
+    border-bottom: 3px solid;
+}
+/* Cores específicas para as abas ativas */
+[data-target="refugiado-form"].active {
+    border-color: #007bff; /* Azul para Refugiado */
+}
+[data-target="voluntario-form"].active {
+    border-color: #28a745; /* Verde para Voluntário */
+}
+
+/* Estilo dos Formulários */
+.registration-form {
+    padding: 10px 0;
+}
+
+.hidden {
+    display: none; /* Classe JS para esconder o formulário inativo */
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.1em;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.half-width { flex: 1; }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+/* Estilo para campos que são preenchidos automaticamente (readonly) */
+input[readonly] {
+    background-color: #f8f9fa; /* Cor mais clara para readonly */
+    cursor: default;
+    border-style: dashed; /* Para dar um toque visual de preenchimento automático */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ESTILOS PARA CHECKBOXES (Novos campos do Voluntário) */
+.checkbox-group > label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.checkbox-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar em linhas em telas menores */
+    gap: 15px;
+}
+
+.checkbox-col {
+    display: flex;
+    flex-direction: column;
+    /* Ajuste para caber 4 colunas em telas maiores, ou 2 colunas para Habilidades */
+    flex-basis: 22%; 
+}
+
+.checkbox-col.half-col {
+    flex-basis: 48%; /* 2 colunas para Habilidades */
+}
+
+.checkbox-col label {
+    font-weight: normal;
+    font-size: 1em;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-col input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+
+/* Botões de Envio */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.blue-bg {
+    background-color: #007bff; /* Cor para Refugiado */
+}
+.blue-bg:hover {
+    background-color: #0056b3;
+}
+
+.green-bg {
+    background-color: #28a745; /* Cor para Voluntário */
+}
+.green-bg:hover {
+    background-color: #1e7e34;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #666;
+}
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade simples */
+@media (max-width: 600px) {
+    .form-row, .checkbox-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .half-width {
+        flex-basis: 100%;
+    }
+    .checkbox-col, .checkbox-col.half-col {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+    }
+    .tab-button {
+        padding: 10px 8px;
+        font-size: 0.9em;
+    }
+}
