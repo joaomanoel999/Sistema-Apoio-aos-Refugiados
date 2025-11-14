@@ -1,7 +1,4 @@
-/* ... (Mantenha o CSS anterior para container, tabs, forms, etc.) ... */
-/* Apenas adicionando e ajustando as novas regras para checkboxes */
 
-/* Reset básico para melhor visualização */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -32,7 +29,7 @@ h1 {
     color: #333;
 }
 
-/* Estilo das Abas (Tabs) */
+
 .tabs {
     display: flex;
     margin-bottom: 20px;
@@ -56,27 +53,24 @@ h1 {
     margin-right: 5px;
 }
 
-/* Estilo para a aba ativa */
 .tab-button.active {
     background: #fff;
     color: #333;
     border-bottom: 3px solid;
 }
-/* Cores específicas para as abas ativas */
 [data-target="refugiado-form"].active {
-    border-color: #007bff; /* Azul para Refugiado */
+    border-color: #007bff; 
 }
 [data-target="voluntario-form"].active {
-    border-color: #28a745; /* Verde para Voluntário */
+    border-color: #28a745; 
 }
 
-/* Estilo dos Formulários */
 .registration-form {
     padding: 10px 0;
 }
 
 .hidden {
-    display: none; /* Classe JS para esconder o formulário inativo */
+    display: none; 
 }
 
 h2 {
@@ -127,11 +121,11 @@ select {
     transition: border-color 0.3s;
 }
 
-/* Estilo para campos que são preenchidos automaticamente (readonly) */
+
 input[readonly] {
-    background-color: #f8f9fa; /* Cor mais clara para readonly */
+    background-color: #f8f9fa; 
     cursor: default;
-    border-style: dashed; /* Para dar um toque visual de preenchimento automático */
+    border-style: dashed;
 }
 
 input:focus,
@@ -145,7 +139,6 @@ textarea {
     resize: vertical;
 }
 
-/* ESTILOS PARA CHECKBOXES (Novos campos do Voluntário) */
 .checkbox-group > label {
     margin-bottom: 10px;
     display: block;
@@ -153,19 +146,19 @@ textarea {
 
 .checkbox-row {
     display: flex;
-    flex-wrap: wrap; /* Permite quebrar em linhas em telas menores */
+    flex-wrap: wrap; 
     gap: 15px;
 }
 
 .checkbox-col {
     display: flex;
     flex-direction: column;
-    /* Ajuste para caber 4 colunas em telas maiores, ou 2 colunas para Habilidades */
+    
     flex-basis: 22%; 
 }
 
 .checkbox-col.half-col {
-    flex-basis: 48%; /* 2 colunas para Habilidades */
+    flex-basis: 48%; 
 }
 
 .checkbox-col label {
@@ -183,7 +176,6 @@ textarea {
 }
 
 
-/* Botões de Envio */
 .btn-submit {
     width: 100%;
     padding: 12px;
@@ -198,14 +190,14 @@ textarea {
 }
 
 .blue-bg {
-    background-color: #007bff; /* Cor para Refugiado */
+    background-color: #007bff; 
 }
 .blue-bg:hover {
     background-color: #0056b3;
 }
 
 .green-bg {
-    background-color: #28a745; /* Cor para Voluntário */
+    background-color: #28a745; 
 }
 .green-bg:hover {
     background-color: #1e7e34;
@@ -225,7 +217,6 @@ textarea {
     text-decoration: underline;
 }
 
-/* Responsividade simples */
 @media (max-width: 600px) {
     .form-row, .checkbox-row {
         flex-direction: column;
