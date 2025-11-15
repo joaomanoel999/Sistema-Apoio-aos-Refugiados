@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
     if (tabButtons.length) {
-        document.querySelectorAll('.formulario.hidden').forEach(form => form.classList.add('hidden')); /
+        document.querySelectorAll('.formulario.hidden').forEach(form => form.classList.add('hidden')); 
 
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {

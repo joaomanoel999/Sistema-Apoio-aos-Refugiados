@@ -1,8 +1,10 @@
-import os
+# apoio_refugios/settings.py
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# 🌟 CORREÇÃO 1: Definir BASE_DIR apenas uma vez no início 🌟
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -16,9 +18,7 @@ SECRET_KEY = 'django-insecure-xbbktxf_)@1690(ww5e^3o@lmu(-%ox9pr2(@(#e))p!a36t)5
 DEBUG = True
 
 ALLOWED_HOSTS = []
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_ROOT = BASE_DIR / 'staticfiles' # Mantido, usado para produção
 
 STATIC_URL = 'static/'
 
@@ -34,8 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuarios',
     'servicos'
-    
-    
 ]
 
 MIDDLEWARE = [
@@ -79,7 +77,7 @@ DATABASES = {
         'NAME': 'apoio_refugiados_db',
         'USER': 'postgres',
         'PASSWORD': 'postpost',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1', # Alterado para 127.0.0.1 para maior estabilidade
         'PORT': '5434'
     }
 }
@@ -107,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br' # 🌟 CORREÇÃO 2: Alterado para Português-Brasil 🌟
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo' # 🌟 CORREÇÃO 3: Ajuste de fuso horário 🌟
 
 USE_I18N = True
 
@@ -119,11 +117,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Já definido no início: STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# no final do settings.py
+
 LOGIN_REDIRECT_URL = '/servicos/'
+
+# 🌟 CORREÇÃO FINAL: Aponta para o modelo de usuário customizado 🌟
+AUTH_USER_MODEL = 'usuarios.Usuario'

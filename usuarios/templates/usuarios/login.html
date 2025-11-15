@@ -1,54 +1,56 @@
-
-
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <title>Login - Sistema de Apoio ao Refugiado</title>
-    
+    <title>Login - Apoio ao Refugiado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'usuarios/css/login.css' %}">
-    
 </head>
-<body>
-    <div class="body-login">
+<body class="body-login">
     <div class="login-container">
         <h1 class="titulo-principal">Sistema de Apoio ao Refugiado</h1>
-        
         <p class="subtitulo">Acesse sua conta com seu telefone e senha</p>
 
-        <form method="post" class="login-form" >
-        {% csrf_token %}    
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="alert-error" style="color: red; margin-bottom: 15px;">
+                {% for error in form.non_field_errors %}
+                    <p>Telefone ou senha incorretos. Tente novamente.</p>
+                {% endfor %}
+            </div>
+            {% endif %}
             
             <div class="campo-grupo">
-                <label for="telefone">Número de Telefone</label>
+                <label for="id_username">Número de Telefone</label>
                 <input 
                     type="tel" 
-                    id="telefone" 
-                    placeholder="+XX DDD XXXXX-XXXX" 
-                    required
-                >
+                    id="id_username" 
+                    name="username" 
+                    placeholder="(XX) XXXXX-XXXX" 
+                    required>
             </div>
-
+            
             <div class="campo-grupo">
-                <label for="senha">Senha</label>
+                <label for="id_password">Senha</label>
                 <input 
                     type="password" 
-                    id="senha" 
-                    placeholder="Sua senha" 
-                    required
-                >
+                    id="id_password" 
+                    name="password" 
+                    placeholder="Sua senha"
+                    required>
             </div>
             
             <div class="link-esqueci">
                 <a href="#">Esqueceu a Senha?</a>
             </div>
-
+            
             <button type="submit" class="btn-entrar">Entrar</button>
+            
+            <p class="login-link">Não tem uma conta? <a href="{% url 'usuarios:cadastro' %}">Crie seu cadastro aqui</a></p>
         </form>
-
-        <div class="link-cadastro">
-     
-    <a href="{% url 'usuarios:cadastro' %}">Crie seu cadastro aqui</a>
-</div>
+    </div>
 </body>
 </html>
