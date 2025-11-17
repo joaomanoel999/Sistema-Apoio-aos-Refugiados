@@ -6,7 +6,7 @@ from usuarios.models import Refugiado, Voluntario
 # --- 1. MODELO: HABILIDADE ---
 class Habilidade(models.Model):
     """ Define o tipo de ajuda oferecida. """
-    nome = models.CharField(max_length=100, unique=True)
+    nome = models.CharField(max_length=100, unique=True, blank=False, null=False)
     
     def __str__(self):
         return self.nome
@@ -14,7 +14,7 @@ class Habilidade(models.Model):
 # --- 2. MODELO: SERVICO (Catálogo - Relação 1:N com Habilidade) ---
 class Servico(models.Model):
     """ Itens no catálogo que o refugiado pode solicitar. """
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, blank=False, null=False)
     descricao = models.TextField()
     habilidade_necessaria = models.ForeignKey(Habilidade, on_delete=models.SET_NULL, null=True, blank=True)
     

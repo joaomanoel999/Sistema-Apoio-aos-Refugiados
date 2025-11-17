@@ -58,10 +58,10 @@ class Refugiado(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE) 
     
     # Dados Pessoais
-    nome_completo = models.CharField(max_length=200, default='') 
-    data_nascimento = models.DateField()
-    pais_origem = models.CharField(max_length=100)
-    idioma_nativo = models.CharField(max_length=50) 
+    nome_completo = models.CharField(max_length=200, blank=False, null=False) 
+    data_nascimento = models.DateField(blank=False, null=False)
+    pais_origem = models.CharField(max_length=100, blank=False, null=False)
+    idioma_nativo = models.CharField(max_length=50, blank=False, null=False) 
     
     status_refugio = models.CharField(
         max_length=15, 
@@ -70,13 +70,13 @@ class Refugiado(models.Model):
     )
     
     # Endereço (blank/null=True para campos opcionais no DB)
-    cep = models.CharField(max_length=9, blank=True, null=True)
-    logradouro = models.CharField(max_length=255, blank=True, null=True)
-    numero_endereco = models.CharField(max_length=10, blank=True, null=True)
-    complemento = models.CharField(max_length=100, blank=True, null=True)
-    bairro = models.CharField(max_length=100, blank=True, null=True)
-    cidade = models.CharField(max_length=100, blank=True, null=True)
-    estado = models.CharField(max_length=2, blank=True, null=True)
+    cep = models.CharField(max_length=9,default='' , blank=False, null=False)
+    logradouro = models.CharField(max_length=255, default='' , blank=False, null=False)
+    numero_endereco = models.CharField(max_length=10, default='' , blank=False, null=False)
+    complemento = models.CharField(max_length=100, default='' , blank=False, null=False)
+    bairro = models.CharField(max_length=100, default='' , blank=False, null=False)
+    cidade = models.CharField(max_length=100,default='' , blank=False, null=False)
+    estado = models.CharField(max_length=2, default='' , blank=False, null=False)
     
     def __str__(self):
         return f"Refugiado: {self.nome_completo}"
@@ -87,15 +87,15 @@ class Voluntario(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE) 
     
     # Dados Pessoais
-    nome_completo = models.CharField(max_length=200)
+    nome_completo = models.CharField(max_length=200, blank=False, null=False)
     email = models.EmailField(unique=True) 
-    telefone = models.CharField(max_length=15, blank=True, null=True) 
+    telefone = models.CharField(max_length=15, blank=False, null=False,default= "") 
     
     # Habilidades e Disponibilidade
-    idiomas_falados = models.TextField(help_text="Lista de idiomas separados por vírgula", blank=True, null=True)
-    habilidades_oferecidas = models.TextField(help_text="Lista de habilidades separadas por vírgula", blank=True, null=True)
-    disponibilidade = models.TextField(blank=True, null=True)
-    localizacao = models.CharField(max_length=255, blank=True, null=True)
+    idiomas_falados = models.TextField(help_text="Lista de idiomas separados por vírgula", blank=False, null=False, default="")
+    habilidades_oferecidas = models.TextField(help_text="Lista de habilidades separadas por vírgula", blank=False, null=False,default="")
+    disponibilidade = models.TextField(blank=False, null=False, default="")
+    localizacao = models.CharField(max_length=255, blank=False, null=False,default="")
     
     def __str__(self):
         return f"Voluntário: {self.nome_completo}"
