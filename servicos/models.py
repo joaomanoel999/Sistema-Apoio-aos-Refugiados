@@ -3,7 +3,7 @@
 from django.db import models
 from usuarios.models import Refugiado, Voluntario 
 
-# --- 1. MODELO: HABILIDADE ---
+
 class Habilidade(models.Model):
     """ Define o tipo de ajuda oferecida. """
     nome = models.CharField(max_length=100, unique=True, blank=False, null=False)
@@ -11,18 +11,17 @@ class Habilidade(models.Model):
     def __str__(self):
         return self.nome
 
-# --- 2. MODELO: SERVICO (Catálogo - Relação 1:N com Habilidade) ---
+
 class Servico(models.Model):
     """ Itens no catálogo que o refugiado pode solicitar. """
     nome = models.CharField(max_length=100, blank=False, null=False)
     descricao = models.TextField()
     habilidade_necessaria = models.ForeignKey(Habilidade, on_delete=models.SET_NULL, null=True, blank=True)
     
-    def __str__(self):
+    def __str__(self): # equivalente toString (override)
         return self.nome
 
-# --- 3. MODELO: SOLICITACAO_SERVICO (Tabela de Ligação N:1) ---
-class SolicitacaoServico(models.Model):
+class SolicitacaoServico(models.Model): # Herança
     """ Tabela que registra um pedido de ajuda feito por um refugiado. """
     refugiado = models.ForeignKey(Refugiado, on_delete=models.CASCADE)
     servico = models.ForeignKey(Servico, on_delete=models.CASCADE)
@@ -33,7 +32,7 @@ class SolicitacaoServico(models.Model):
     def __str__(self):
         return f"Solicitação {self.id} de {self.refugiado.usuario.telefone}"
 
-# --- 4. MODELO: VOLUNTARIO_HABILIDADE (Tabela de Ligação N:M) ---
+
 class VoluntarioHabilidade(models.Model):
     """ Tabela que registra a relação N:M entre Voluntário e Habilidade. """
     voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE)
